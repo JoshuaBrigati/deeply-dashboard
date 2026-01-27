@@ -88,7 +88,7 @@ export default function Home() {
               Dimension Breakdown
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {dimensions.map((dimension, index) => (
               <DimensionCard
                 key={dimension.id}

@@ -32,7 +32,7 @@ export function DashboardSkeleton() {
         {/* Dimension breakdown skeleton */}
         <div className="mb-12">
           <Skeleton className="h-8 w-56 mb-6" />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Array.from({ length: 7 }).map((_, i) => (
               <SkeletonCard key={i} />
             ))}
