@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import type { Dimension } from "@/types/assessment";
 import { getScoreColor } from "@/lib/data";
 import { Card } from "@/components/ui/card";
@@ -10,8 +10,6 @@ import { Card } from "@/components/ui/card";
 interface DimensionCardProps {
   dimension: Dimension;
   index: number;
-  isBiggestGap?: boolean;
-  onInsightClick?: () => void;
 }
 
 const getGapColor = (gap: number): string => {
@@ -44,7 +42,7 @@ const getGapBorderStyle = (gap: number): React.CSSProperties => {
   return {};
 };
 
-export function DimensionCard({ dimension, index, isBiggestGap, onInsightClick }: DimensionCardProps) {
+export function DimensionCard({ dimension, index }: DimensionCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const gap = Math.abs(dimension.userScore - dimension.partnerScore);
   const avgScore = Math.round(
@@ -55,14 +53,6 @@ export function DimensionCard({ dimension, index, isBiggestGap, onInsightClick }
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setIsExpanded(!isExpanded);
-    }
-  };
-
-  const handleInsightKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      e.stopPropagation();
-      onInsightClick?.();
     }
   };
 
@@ -105,31 +95,14 @@ export function DimensionCard({ dimension, index, isBiggestGap, onInsightClick }
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            {isBiggestGap && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onInsightClick?.();
-                }}
-                onKeyDown={handleInsightKeyDown}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium hover:bg-accent/20 transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:outline-none"
-                aria-label="See AI Insight for this dimension"
-              >
-                <Sparkles className="h-3 w-3" />
-                See AI Insight
-              </button>
-            )}
-            <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="text-muted-foreground"
-              aria-hidden="true"
-            >
-              <ChevronDown className="w-5 h-5" />
-            </motion.div>
-          </div>
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="text-muted-foreground"
+            aria-hidden="true"
+          >
+            <ChevronDown className="w-5 h-5" />
+          </motion.div>
         </div>
 
         {/* Score Comparison */}

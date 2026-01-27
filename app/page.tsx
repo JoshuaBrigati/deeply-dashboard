@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { DimensionRadar } from "@/components/dashboard/DimensionRadar";
 import { DimensionCard } from "@/components/dashboard/DimensionCard";
-import { InsightDialog } from "@/components/dashboard/InsightDialog";
+import { InsightCard } from "@/components/dashboard/InsightCard";
 import { DashboardSkeleton } from "@/components/dashboard/DashboardSkeleton";
 import { mockAssessmentData, getBiggestGap } from "@/lib/data";
 import { OverallScore } from "@/components/dashboard/OverallScore";
@@ -13,7 +13,6 @@ import { Card } from "@/components/ui/card";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const { overallScore, assessmentDate, dimensions } = mockAssessmentData;
-  const [insightDialogOpen, setInsightDialogOpen] = useState(false);
   const biggestGapDimension = getBiggestGap(dimensions);
 
   useEffect(() => {
@@ -94,11 +93,17 @@ export default function Home() {
                 key={dimension.id}
                 dimension={dimension}
                 index={index}
-                isBiggestGap={dimension.id === biggestGapDimension?.id}
-                onInsightClick={() => setInsightDialogOpen(true)}
               />
             ))}
           </div>
+        </section>
+
+        <section className="mb-12">
+          <InsightCard
+            dimension={biggestGapDimension}
+            allDimensions={dimensions}
+            overallScore={overallScore}
+          />
         </section>
 
         <footer className="border-t border-border/50 py-8 text-center">
@@ -110,14 +115,6 @@ export default function Home() {
           </p>
         </footer>
       </div>
-
-      <InsightDialog
-        dimension={biggestGapDimension}
-        allDimensions={dimensions}
-        overallScore={overallScore}
-        open={insightDialogOpen}
-        onOpenChange={setInsightDialogOpen}
-      />
     </div>
   );
 }
