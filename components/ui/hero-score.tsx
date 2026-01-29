@@ -41,7 +41,7 @@ function PersonScore({
 
   return (
     <motion.div
-      className="flex flex-col items-center gap-4"
+      className="flex flex-col items-center gap-2 md:gap-4"
       initial={{ opacity: 0, x: side === "left" ? -60 : 60 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
@@ -54,7 +54,7 @@ function PersonScore({
           style={{ background: color }}
         />
 
-        <svg width="120" height="120" className="relative z-10 -rotate-90">
+        <svg viewBox="0 0 120 120" className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[120px] md:h-[120px] relative z-10 -rotate-90">
           {/* Background track */}
           <circle
             cx="60" cy="60" r="45"
@@ -81,7 +81,7 @@ function PersonScore({
 
         {/* Score number in center */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-3xl font-bold text-foreground">
+          <span className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
             <AnimatedNumber value={score} delay={delay + 0.5} />
           </span>
         </div>
@@ -94,9 +94,9 @@ function PersonScore({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: delay + 0.8, duration: 0.5 }}
       >
-        <span className="text-base font-semibold text-foreground">{name}</span>
+        <span className="text-sm md:text-base font-semibold text-foreground">{name}</span>
         <span
-          className="text-xs font-medium px-3 py-1 rounded-full"
+          className="text-[10px] md:text-xs font-medium px-2 md:px-3 py-0.5 md:py-1 rounded-full"
           style={{ backgroundColor: `${color}15`, color }}
         >
           {getScoreLabel(score)}
@@ -132,7 +132,7 @@ export function HeroScore({
         />
       </div>
 
-      <div className="flex items-center gap-4 relative justify-center">
+      <div className="flex items-center gap-1 sm:gap-2 md:gap-4 relative justify-center">
         {/* User Score - Left */}
         <div data-left-score>
           <PersonScore
@@ -163,8 +163,8 @@ export function HeroScore({
             />
           </div>
 
-          {/* Heart SVG - Made larger */}
-          <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+          {/* Heart SVG - Responsive sizing */}
+          <div className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-64 lg:h-64">
             <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
               <defs>
                 <linearGradient id="heroHeartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -205,15 +205,15 @@ export function HeroScore({
 
             {/* Central score display - no background blob */}
             <motion.div
-              className="absolute inset-0 flex flex-col items-center justify-center -mt-6"
+              className="absolute inset-0 flex flex-col items-center justify-center -mt-2 sm:-mt-4 md:-mt-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 2.2, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+              <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground">
                 <AnimatedNumber value={overallScore} delay={2.3} />
               </span>
-              <span className="text-xs md:text-sm text-muted-foreground font-medium mt-1">
+              <span className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 md:mt-1">
                 Together
               </span>
             </motion.div>
