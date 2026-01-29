@@ -6,7 +6,7 @@ export interface SubDimension {
 }
 
 export interface Dimension {
-  id: string;
+  id: number;
   name: string;
   description: string;
   icon: string;
@@ -17,9 +17,10 @@ export interface Dimension {
   subDimensions: SubDimension[];
 }
 
-export interface AssessmentResult {
+export interface AssessmentData {
   overallScore: number;
-  partnerOverallScore: number;
+  maxScore: number;
   assessmentDate: string;
+  coupleNames: { user: string; partner: string };
   dimensions: Dimension[];
 }

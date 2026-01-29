@@ -1,154 +1,140 @@
-import { AssessmentResult, Dimension } from "@/types/assessment";
+import type { SubDimension, Dimension, AssessmentData } from "@/types/assessment";
 
-export const mockAssessmentData: AssessmentResult = {
+export type { SubDimension, Dimension, AssessmentData };
+
+export const assessmentData: AssessmentData = {
   overallScore: 72,
-  partnerOverallScore: 72,
-  assessmentDate: "January 15, 2026",
+  maxScore: 100,
+  assessmentDate: "2026-01-15",
+  coupleNames: { user: "You", partner: "Partner" },
   dimensions: [
     {
-      id: "foundation",
+      id: 1,
       name: "Foundation",
       description: "Individual Wholeness",
-      icon: "🏛️",
+      icon: "💕",
       userScore: 78,
       partnerScore: 75,
-      warningText:
-        "When Foundation fails, individual struggles overflow into the relationship. Personal unresolved issues become shared burdens, and neither partner can fully show up for the other.",
+      warningText: "When foundation cracks: codependency, controlling behavior, emotional dysregulation. This layer must be addressed first.",
       subDimensions: [
-        { name: "Self-Awareness", icon: "🔍", userScore: 80, partnerScore: 77 },
-        { name: "Emotional Regulation", icon: "🧘", userScore: 76, partnerScore: 73 },
-        { name: "Personal Growth", icon: "🌱", userScore: 78, partnerScore: 75 },
-      ],
+        { name: "Self-Regulation", icon: "🧘", userScore: 80, partnerScore: 72 },
+        { name: "Self-Worth & Security", icon: "💎", userScore: 75, partnerScore: 78 },
+        { name: "Personal Responsibility", icon: "✅", userScore: 82, partnerScore: 74 },
+        { name: "Health & Wellbeing", icon: "🏥", userScore: 75, partnerScore: 76 }
+      ]
     },
     {
-      id: "connection",
+      id: 2,
       name: "Connection",
       description: "How Partners Relate",
       icon: "💬",
       userScore: 82,
       partnerScore: 68,
-      warningText:
-        "When Connection fails, partners feel like strangers living parallel lives. Emotional intimacy fades, and conversations become transactional rather than meaningful.",
+      warningText: "When connection breaks: feeling like roommates, lonely together, constant conflict, contempt.",
       subDimensions: [
-        { name: "Emotional Intimacy", icon: "❤️", userScore: 85, partnerScore: 70 },
-        { name: "Communication Quality", icon: "💭", userScore: 80, partnerScore: 65 },
-        { name: "Physical Affection", icon: "🤗", userScore: 81, partnerScore: 69 },
-      ],
+        { name: "Communication", icon: "🗣️", userScore: 85, partnerScore: 65 },
+        { name: "Emotional Intimacy", icon: "❤️", userScore: 80, partnerScore: 70 },
+        { name: "Physical Intimacy", icon: "🔥", userScore: 81, partnerScore: 69 }
+      ]
     },
     {
-      id: "operations",
+      id: 3,
       name: "Operations",
       description: "Daily Partnership",
       icon: "⚙️",
       userScore: 71,
       partnerScore: 74,
-      warningText:
-        "When Operations fail, daily life becomes a source of conflict. Chores, finances, and logistics create friction instead of flowing smoothly as a team.",
+      warningText: "When operations fail: resentment over inequality, 'I do everything,' financial conflicts.",
       subDimensions: [
-        { name: "Task Division", icon: "📋", userScore: 68, partnerScore: 76 },
-        { name: "Financial Partnership", icon: "💰", userScore: 72, partnerScore: 73 },
-        { name: "Time Management", icon: "⏰", userScore: 73, partnerScore: 73 },
-      ],
+        { name: "Domestic Systems", icon: "🏠", userScore: 68, partnerScore: 76 },
+        { name: "Financial Systems", icon: "💰", userScore: 72, partnerScore: 71 },
+        { name: "Time Allocation", icon: "⏰", userScore: 73, partnerScore: 75 }
+      ]
     },
     {
-      id: "boundary",
+      id: 4,
       name: "Boundary",
-      description: "Internal and External",
+      description: "Internal & External",
       icon: "🛡️",
       userScore: 58,
       partnerScore: 78,
-      warningText:
-        "When Boundaries fail, the relationship either becomes enmeshed or disconnected. External pressures from family, work, or friends can erode the partnership's integrity.",
+      warningText: "When boundaries fail: intrusive in-laws, suffocation, parallel lives, external validation seeking.",
       subDimensions: [
-        { name: "Personal Space", icon: "🚪", userScore: 55, partnerScore: 80 },
-        { name: "Family Boundaries", icon: "👨‍👩‍👧", userScore: 60, partnerScore: 76 },
-        { name: "Work-Life Balance", icon: "⚖️", userScore: 59, partnerScore: 78 },
-      ],
+        { name: "Internal Boundaries", icon: "🔒", userScore: 55, partnerScore: 80 },
+        { name: "External Boundaries", icon: "🌍", userScore: 61, partnerScore: 76 }
+      ]
     },
     {
-      id: "alignment",
+      id: 5,
       name: "Alignment",
       description: "Shared Direction",
-      icon: "🧭",
+      icon: "🎯",
       userScore: 75,
       partnerScore: 68,
-      warningText:
-        "When Alignment fails, partners pull in different directions. Dreams and goals diverge, creating a sense of growing apart rather than building together.",
+      warningText: "When alignment breaks: 'We want different things,' growing apart, fundamental incompatibilities.",
       subDimensions: [
-        { name: "Shared Values", icon: "💎", userScore: 78, partnerScore: 70 },
-        { name: "Future Vision", icon: "🔮", userScore: 72, partnerScore: 66 },
-        { name: "Life Goals", icon: "🎯", userScore: 75, partnerScore: 68 },
-      ],
+        { name: "Values Alignment", icon: "⚖️", userScore: 78, partnerScore: 70 },
+        { name: "Life Stage Transitions", icon: "🔄", userScore: 72, partnerScore: 65 },
+        { name: "Growth Trajectories", icon: "📈", userScore: 75, partnerScore: 69 }
+      ]
     },
     {
-      id: "repair",
+      id: 6,
       name: "Repair",
       description: "Recovery Systems",
       icon: "🔧",
       userScore: 52,
       partnerScore: 61,
-      warningText:
-        "When Repair fails, small hurts accumulate into lasting resentment. Conflicts remain unresolved, trust erodes, and the relationship struggles to heal from inevitable wounds.",
+      warningText: "When repair fails: can't get past infidelity, bringing up old issues, resentment calcification.",
       subDimensions: [
-        { name: "Conflict Resolution", icon: "🤝", userScore: 50, partnerScore: 58 },
-        { name: "Forgiveness", icon: "🕊️", userScore: 54, partnerScore: 63 },
-        { name: "Rebuilding Trust", icon: "🔐", userScore: 52, partnerScore: 62 },
-      ],
+        { name: "Trust & Repair", icon: "🤝", userScore: 50, partnerScore: 58 },
+        { name: "Resilience Through Adversity", icon: "💪", userScore: 54, partnerScore: 64 }
+      ]
     },
     {
-      id: "meta",
+      id: 7,
       name: "Meta",
-      description: "Relationship About the Relationship",
-      icon: "🪞",
+      description: "The Relationship About the Relationship",
+      icon: "🔮",
       userScore: 85,
       partnerScore: 82,
-      warningText:
-        "When Meta fails, the relationship lacks self-awareness. Partners stop reflecting on patterns, miss opportunities for growth, and repeat the same cycles.",
+      warningText: "When meta fails: one person checked out, contempt, power imbalances, feeling unappreciated.",
       subDimensions: [
-        { name: "Relationship Awareness", icon: "👁️", userScore: 87, partnerScore: 84 },
-        { name: "Growth Mindset", icon: "📈", userScore: 84, partnerScore: 80 },
-        { name: "Intentionality", icon: "🎪", userScore: 84, partnerScore: 82 },
-      ],
-    },
-  ],
+        { name: "Commitment & Investment", icon: "💍", userScore: 88, partnerScore: 85 },
+        { name: "Power Dynamics", icon: "⚖️", userScore: 82, partnerScore: 80 },
+        { name: "Appreciation & Positivity", icon: "✨", userScore: 85, partnerScore: 81 }
+      ]
+    }
+  ]
 };
 
-export const getScoreColor = (score: number): string => {
-  if (score >= 70) return "#5B8A72";
-  if (score >= 40) return "#E9B872";
-  return "#E07A5F";
-};
+// Helper functions
+export function getScoreColor(score: number): string {
+  if (score >= 80) return "#059669"; // Emerald green
+  if (score >= 60) return "#10B981"; // Green
+  if (score >= 40) return "#D97706"; // Amber
+  return "#E85A4F"; // Coral
+}
 
-export const getScoreBgColor = (score: number): string => {
-  if (score >= 70) return "bg-score-good text-white";
-  if (score >= 40) return "bg-score-medium";
-  return "bg-score-low";
-};
+export function getScoreColorClass(score: number): string {
+  if (score >= 80) return "bg-[#059669]/15 text-[#059669] border border-[#059669]/25";
+  if (score >= 60) return "bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/25";
+  if (score >= 40) return "bg-[#D97706]/15 text-[#D97706] border border-[#D97706]/25";
+  return "bg-[#E85A4F]/15 text-[#E85A4F] border border-[#E85A4F]/25";
+}
 
-export const getOverallLabel = (score: number): string => {
-  if (score >= 80) return "Thriving Relationship";
-  if (score >= 70) return "Strong Foundation";
-  if (score >= 50) return "Room to Grow";
-  if (score >= 30) return "Needs Attention";
-  return "Critical Focus Area";
-};
+export function getScoreLabel(score: number): string {
+  if (score >= 80) return "Thriving";
+  if (score >= 60) return "Healthy";
+  if (score >= 40) return "Growing";
+  return "Needs Focus";
+}
 
-export const getPerceptionGap = (
-  userScore: number,
-  partnerScore: number
-): number => {
-  return Math.abs(userScore - partnerScore);
-};
-
-export const getBiggestGap = (dimensions: Dimension[]): Dimension | null => {
-  if (dimensions.length === 0) return null;
-
-  return dimensions.reduce((maxGap, dimension) => {
-    const currentGap = getPerceptionGap(
-      dimension.userScore,
-      dimension.partnerScore
-    );
-    const maxGapValue = getPerceptionGap(maxGap.userScore, maxGap.partnerScore);
-    return currentGap > maxGapValue ? dimension : maxGap;
-  }, dimensions[0]);
-};
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
